@@ -13,22 +13,6 @@ Sample
  ![screenshots](./img/003.png)
  ![screenshots](./img/002.png)
  ![screenshots](./img/001.png)
- 
- ## Usage
- 
- ```groovy
-allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
-}
- ```
- ```groovy
-dependencies {
-        compile 'com.github.looa:RecyclerKit:0.0.1'
-}
-```
 
 Quick Start
 -----
