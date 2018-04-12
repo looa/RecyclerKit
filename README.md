@@ -17,18 +17,28 @@ Sample
  ## Usage
  
  ```groovy
- 
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
  ```
+ ```groovy
+dependencies {
+        compile 'com.github.looa:RecyclerKit:0.0.1'
+}
+```
 
 Quick Start
 -----
 
 Annotation
 ```java
-    @Kit(ui = TitleKit.class)
-    public class Data {
-        
-    }
+@Kit(ui = TitleKit.class)
+public class Data {
+    
+}
 ```
 
 kit
@@ -81,6 +91,10 @@ public class MyActivity extends Activity {
     }
 }
  ```
+ proguard-rules.pro
+ ```groovy
+-keep class * implements com.biubiu.kit.core.IKitFactory { *; }
+```
 
 ## TODO
 支持各类LayoutManager。
