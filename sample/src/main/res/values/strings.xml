@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Kit</string>
+
+    <string name="baseline">End</string>
+    <string name="title">Message</string>
+    <string name="title_content">This class represents the basic building block for user interface components. A View
+        occupies a rectangular area on the screen and is responsible for drawing and
+        event handling. View is the base class for <em>widgets</em>, which are
+        used to create interactive UI components (buttons, text fields, etc.).</string>
+
+</resources>
