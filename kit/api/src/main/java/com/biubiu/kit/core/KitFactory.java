@@ -12,7 +12,7 @@ public class KitFactory {
 
     private static IKitFactory KIT_FACTORY = null;
     private static final List<Mapping> MAPPINGS = new ArrayList<>();
-    private static String PACKAGENAME = "com.biubiu.kit.core";
+    private static String PACKAGE_NAME = "com.biubiu.kit.core";
 
     public static void map(Class<?> data, Class<?> kit) {
         MAPPINGS.add(new Mapping(data.getName(), kit.getName()));
@@ -40,7 +40,7 @@ public class KitFactory {
         try {
             IKitFactory factory = KIT_FACTORY;
             if (factory == null) {
-                Class factoryClass = Class.forName(PACKAGENAME + ".kitFactoryImpl");
+                Class factoryClass = Class.forName(PACKAGE_NAME + ".kitFactoryImpl");
                 factory = (IKitFactory) factoryClass.newInstance();
                 KIT_FACTORY = factory;
             }

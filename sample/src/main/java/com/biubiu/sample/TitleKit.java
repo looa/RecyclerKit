@@ -20,7 +20,7 @@ public class TitleKit extends AbsKit {
     }
 
     @Override
-    public void bind(Object data) {
+    public void bind(int position, Object data) {
 
     }
 
