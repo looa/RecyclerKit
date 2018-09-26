@@ -28,7 +28,7 @@ ext {
     uploadName = 'recycler-kit'
     publishVersion = '0.0.1'
     desc = 'Item kit binding for RecyclerView without Adapter.'
-    website = 'https://github.com/looa'
+    website = 'https://github.com/looa/RecyclerKit'
 }
 
 task clean(type: Delete) {
