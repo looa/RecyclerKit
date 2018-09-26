@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new CardCoverSmallKit.Data());
         list.add(new BaselineKit.Data());
 
-        KitBaseAdapter adapter = new KitBaseAdapter(list);
+        KitBaseAdapter adapter = new KitBaseAdapter(this, list);
 
         RecyclerView recycler = findViewById(R.id.recycler);
 

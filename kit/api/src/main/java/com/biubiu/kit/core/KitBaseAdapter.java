@@ -1,5 +1,6 @@
 package com.biubiu.kit.core;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -21,10 +22,10 @@ public class KitBaseAdapter extends RecyclerView.Adapter {
 
     private OnItemClickListener listener;
 
-    public KitBaseAdapter(List<Object> list) {
+    public KitBaseAdapter(Context context, List<Object> list) {
         this.list = list;
         typeArray = new SparseArray<>();
-        kitFactory = KitFactory.newInstant();
+        kitFactory = KitFactory.newInstant(context.getApplicationInfo().processName);
     }
 
     @Override

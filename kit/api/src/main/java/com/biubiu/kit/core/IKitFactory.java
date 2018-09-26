@@ -5,7 +5,7 @@ package com.biubiu.kit.core;
  * Created by looa on 2018/1/11.
  */
 
-interface IKitFactory {
+public interface IKitFactory {
 
     void map();
 

@@ -17,30 +17,30 @@ import javax.lang.model.util.Elements;
  * Created by looa on 2018/4/10.
  */
 
-public class KitAnnotated {
+class KitAnnotated {
 
-    private String packageName = "com.biubiu.kit.core";
-    private String factoryImplName = "kitFactoryImpl";
+    private final static String factoryImplName = "kitFactoryImpl";
+    private String factoryPackageName = "com.biubiu.kit.core";
+    private String packageName = factoryPackageName;//如果设置了applicationId，会更新
     private ClassName interfaceName = ClassName.get(packageName, "IKitFactory");
 
-    public Elements elementUtils;
-    public List<KitType> types;
+    private List<KitType> types;
 
-    public KitAnnotated(Elements elementUtils) {
-        this.elementUtils = elementUtils;
+    KitAnnotated(String packageName) {
+        if (packageName != null) this.packageName = packageName;
         types = new ArrayList<>();
     }
 
-    public void addType(KitType type) {
+    void addType(KitType type) {
         types.add(type);
     }
 
-    public JavaFile generateKitFactory() {
+    JavaFile generateKitFactory() {
         MethodSpec.Builder builderMap = MethodSpec.methodBuilder("map")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override.class)
                 .returns(void.class);
-        ClassName KitFactory = ClassName.get(packageName, "KitFactory");
+        ClassName KitFactory = ClassName.get(factoryPackageName, "KitFactory");
         for (KitType type : types) {
             builderMap.addStatement("$T.map($T.class, $T.class)", KitFactory, ClassName.get(type.getFieldType()), type.getType());
         }
