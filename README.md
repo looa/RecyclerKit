@@ -16,6 +16,34 @@ Sample
 
 Quick Start
 -----
+gradle
+```gradle
+android {
+    ```
+    defaultConfig {
+        applicationId "YourApplicationId"
+        ```
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        applicationId: applicationId,
+                ]
+            }
+        }
+    }
+    ```
+}
+
+dependencies {
+    ```
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    
+    // recycler-kit
+    implementation 'com.biubiu.recycler:kit-api:0.0.1'
+    implementation 'com.biubiu.recycler:kit-annotation:0.0.1'
+    annotationProcessor 'com.biubiu.recycler:kit-compiler:0.0.1'
+}
+```
 
 Annotation
 ```java
@@ -66,7 +94,7 @@ public class MyActivity extends Activity {
         list.add(new CardCoverSmallKit.Data());
         list.add(new BaselineKit.Data());
         
-        KitBaseAdapter adapter = new KitBaseAdapter(list);
+        KitBaseAdapter adapter = new KitBaseAdapter(this, list);
         
         RecyclerView recycler = findViewById(R.id.recycler);
         
