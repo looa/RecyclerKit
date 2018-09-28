@@ -17,7 +17,7 @@ Sample
 Quick Start
 -----
 gradle
-```gradle
+```groovy
 android {
     ```
     defaultConfig {
