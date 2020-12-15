@@ -36,12 +36,12 @@ android {
 
 dependencies {
     ```
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     
     // recycler-kit
-    implementation 'com.biubiu.recycler:kit-api:0.0.1'
-    implementation 'com.biubiu.recycler:kit-annotation:0.0.1'
-    annotationProcessor 'com.biubiu.recycler:kit-compiler:0.0.1'
+    implementation 'com.biubiu.recycler:kit-api:0.0.2'
+    implementation 'com.biubiu.recycler:kit-annotation:0.0.2'
+    annotationProcessor 'com.biubiu.recycler:kit-compiler:0.0.2'
 }
 ```
 
