@@ -10,7 +10,6 @@ import java.util.List;
 
 public class KitFactory {
 
-    private static IKitFactory KIT_FACTORY = null;
     private static final List<Mapping> MAPPINGS = new ArrayList<>();
 
     public static void map(Class<?> data, Class<?> kit) {
@@ -36,23 +35,20 @@ public class KitFactory {
     }
 
     static IKitFactory newInstant(String applicationId) {
-        IKitFactory factory = KIT_FACTORY;
-        if (factory == null) {
-            String defaultPackageName = "com.biubiu.kit.core";
-            Class<?> factoryClass = getClass(applicationId);
-            factoryClass = factoryClass == null ?
-                    getClass(defaultPackageName) :
-                    factoryClass;
-            if (factoryClass == null) {
-                return null;
-            }
-            try {
-                factory = (IKitFactory) factoryClass.newInstance();
-                factory.map();
-                KIT_FACTORY = factory;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        IKitFactory factory = null;
+        String defaultPackageName = "com.biubiu.kit.core";
+        Class<?> factoryClass = getClass(applicationId);
+        factoryClass = factoryClass == null ?
+                getClass(defaultPackageName) :
+                factoryClass;
+        if (factoryClass == null) {
+            return null;
+        }
+        try {
+            factory = (IKitFactory) factoryClass.newInstance();
+            factory.map();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return factory;
     }
