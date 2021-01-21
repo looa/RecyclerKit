@@ -27,7 +27,7 @@ public class KitFactory {
 
     public static Object obtain(String kitClassName) {
         try {
-            Class cls = Class.forName(kitClassName);
+            Class<?> cls = Class.forName(kitClassName);
             return cls.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,8 +38,14 @@ public class KitFactory {
     static IKitFactory newInstant(String applicationId) {
         IKitFactory factory = KIT_FACTORY;
         if (factory == null) {
-            Class factoryClass = getClass(applicationId);
-            if (factoryClass == null) return null;
+            String defaultPackageName = "com.biubiu.kit.core";
+            Class<?> factoryClass = getClass(applicationId);
+            factoryClass = factoryClass == null ?
+                    getClass(defaultPackageName) :
+                    factoryClass;
+            if (factoryClass == null) {
+                return null;
+            }
             try {
                 factory = (IKitFactory) factoryClass.newInstance();
                 factory.map();
@@ -51,8 +57,8 @@ public class KitFactory {
         return factory;
     }
 
-    private static Class getClass(String applicationId) {
-        Class factoryClass = null;
+    private static Class<?> getClass(String applicationId) {
+        Class<?> factoryClass = null;
         try {
             factoryClass = Class.forName(applicationId + ".kitFactoryImpl");
             return factoryClass;

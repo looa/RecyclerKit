@@ -1,10 +1,12 @@
 package com.biubiu.kit.core;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -13,23 +15,28 @@ import java.util.List;
  * Created by looa on 2018/1/11.
  */
 
-public class KitBaseAdapter extends RecyclerView.Adapter {
+public class KitBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private IKitFactory kitFactory;
-    private List<Object> list;
-    private SparseArray<String> typeArray;//存储item的类型，type为item对应kit的className
+    private final IKitFactory kitFactory;
+    private final List<Object> list;
+    // 存储item的类型，type为item对应kit的className
+    private final SparseArray<String> typeArray;
     private int index = 9;
 
     private OnItemClickListener listener;
 
     public KitBaseAdapter(Context context, List<Object> list) {
+        this(context, list, context.getApplicationInfo().processName);
+    }
+
+    public KitBaseAdapter(Context context, List<Object> list, String application) {
         this.list = list;
         typeArray = new SparseArray<>();
-        kitFactory = KitFactory.newInstant(context.getApplicationInfo().processName);
+        kitFactory = KitFactory.newInstant(application);
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         String type = typeArray.get(viewType);
         AbsKit kit = (AbsKit) kitFactory.create(type);
         kit.onCreate(this);
@@ -37,7 +44,7 @@ public class KitBaseAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof Holder) {
             AbsKit chatKit = ((Holder) holder).getChatKit();
             chatKit.bind(getRealPosition(position), list.get(getRealPosition(position)));

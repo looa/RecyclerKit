@@ -39,9 +39,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     
     // recycler-kit
-    implementation 'com.biubiu.recycler:kit-api:0.0.2'
-    implementation 'com.biubiu.recycler:kit-annotation:0.0.2'
-    annotationProcessor 'com.biubiu.recycler:kit-compiler:0.0.2'
+    implementation 'com.biubiu.recycler:kit-api:0.0.3'
+    implementation 'com.biubiu.recycler:kit-annotation:0.0.3'
+    annotationProcessor 'com.biubiu.recycler:kit-compiler:0.0.3'
 }
 ```
 
